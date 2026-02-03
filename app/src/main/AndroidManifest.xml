@@ -18,7 +18,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.GomiDay" >
         <activity
@@ -38,7 +38,7 @@
             android:name=".notification.receiver.TrashAlarmReceiver"
             android:exported="false" />
 
-        <!-- 再起動後にアラームを復活させる（必須） -->
+        <!-- 再起動後にアラームを復活させる-->
         <receiver
             android:name=".notification.receiver.BootReceiver"
             android:exported="true">
@@ -47,6 +47,20 @@
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <!-- ウィジェット Receiver -->
+        <receiver
+            android:name=".widget.TrashWidgetReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.example.gomiday.UPDATE_WIDGET" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/trash_widget_info" />
+        </receiver>
+
 
     </application>
 

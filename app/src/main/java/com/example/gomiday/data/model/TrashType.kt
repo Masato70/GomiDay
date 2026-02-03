@@ -20,7 +20,7 @@ data class TrashType(
     val daysOfWeek: List<Int>,          // 収集曜日 (0=日, 1=月, ..., 6=土)
     val notifyEnabled: Boolean = true,   // 通知ON/OFF
     val notifyTimeBefore: String = "20:00", // 前日通知時刻
-    val notifyTimeOn: String = "07:00",     // 当日通知時刻
+    val notifyTimeOn: String = "06:00",     // 当日通知時刻
     val createdAt: Long = System.currentTimeMillis(), // 作成日時
     val sortOrder: Int = 0              // 表示順序
 ) {

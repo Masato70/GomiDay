@@ -74,5 +74,8 @@ dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
 
     // WorkManager (通知の定期実行用)
-    implementation("androidx.work:work-runtime-ktx:2.9.0")
+//    implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+    implementation("androidx.glance:glance-appwidget:1.1.0")
+    implementation("androidx.glance:glance-material3:1.1.0")
 }

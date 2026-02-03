@@ -21,6 +21,11 @@ interface TrashTypeDao {
     @Query("SELECT * FROM trash_types WHERE id = :id")
     suspend fun getTrashTypeById(id: Int): TrashType?
 
+    // 📖 全てのゴミタイプを一度だけ取得（ウィジェット用）
+    @Query("SELECT * FROM trash_types ORDER BY sortOrder ASC, id ASC")
+    suspend fun getAllTrashTypesOnce(): List<TrashType>
+
+
     // 📖 通知が有効なゴミタイプのみ取得
     @Query("SELECT * FROM trash_types WHERE notifyEnabled = 1 ORDER BY sortOrder ASC")
     fun getNotifyEnabledTrashTypes(): Flow<List<TrashType>>

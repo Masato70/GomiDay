@@ -79,7 +79,7 @@ abstract class AppDatabase : RoomDatabase() {
                 ),
                 TrashType(
                     emoji = "gomi_mark07_shigen",
-                    name = "資源ゴミ",
+                    name = "紙類の日にち",
                     colorHex = "#4ECDC4",
                     daysOfWeek = listOf(2),
                     sortOrder = 2
@@ -93,7 +93,7 @@ abstract class AppDatabase : RoomDatabase() {
                 ),
                 TrashType(
                     emoji = "gomi_mark05_petbottle",
-                    name = "ペットボトル",
+                    name = "ビン・カン・ペットボトル",
                     colorHex = "#FECA57",
                     daysOfWeek = listOf(3),
                     sortOrder = 4

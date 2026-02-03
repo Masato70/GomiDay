@@ -100,10 +100,6 @@ class TrashSettingsViewModel(
     }
 
 
-    // ============================================
-    // CRUD操作
-    // ============================================
-
     // 新しいゴミを追加
     fun addTrashType(trashType: TrashType, context: Context) {
         viewModelScope.launch {

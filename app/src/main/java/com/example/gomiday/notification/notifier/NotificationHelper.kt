@@ -50,14 +50,13 @@ object NotificationHelper {
         trashNames: List<String>,
         notificationId: Int = 1
     ) {
-        val title = "明日はゴミの日です"
-        val text = if (trashNames.size == 1) {
+        val title = if (trashNames.size == 1) {
             "明日は${trashNames[0]}の日です"
         } else {
             "明日は${trashNames.joinToString("、")}の日です"
         }
 
-        showNotification(context, title, text, notificationId)
+        showNotification(context, title, notificationId)
     }
 
     /**
@@ -69,14 +68,13 @@ object NotificationHelper {
         trashNames: List<String>,
         notificationId: Int = 2
     ) {
-        val title = "今日はゴミの日です"
-        val text = if (trashNames.size == 1) {
+        val title = if (trashNames.size == 1) {
             "今日は${trashNames[0]}の日です"
         } else {
             "今日は${trashNames.joinToString("、")}の日です"
         }
 
-        showNotification(context, title, text, notificationId)
+        showNotification(context, title, notificationId)
     }
 
     /**
@@ -85,7 +83,6 @@ object NotificationHelper {
     private fun showNotification(
         context: Context,
         title: String,
-        text: String,
         notificationId: Int
     ) {
         // 通知権限をチェック
@@ -105,11 +102,10 @@ object NotificationHelper {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        // 通知を構築
+        // 通知を構築（テキストなし、タイトルのみ）
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(title)
-            .setContentText(text)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
