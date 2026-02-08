@@ -398,7 +398,10 @@ fun TrashEditDialog(
                                 SelectableCircle(
                                     selected = selectedIcon == iconName,
                                     onClick = { selectedIcon = iconName },
-                                    modifier = Modifier.size(68.dp) // 大きめサイズ
+                                    selectedColor = Color(
+                                        android.graphics.Color.parseColor(selectedColor)
+                                    ),
+                                    modifier = Modifier.size(68.dp)
                                 ) {
                                     Image(
                                         painter = painterResource(
@@ -408,19 +411,19 @@ fun TrashEditDialog(
                                             )
                                         ),
                                         contentDescription = iconName,
-                                        modifier = Modifier.size(68.dp) // 画像も大きく
+                                        modifier = Modifier.size(56.dp)
                                     )
                                 }
                             }
                             repeat(4 - rowIcons.size) {
-                                Spacer(modifier = Modifier.size(72.dp))
+                                Spacer(modifier = Modifier.size(68.dp))
                             }
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                     }
                 }
 
-                // 色選択（小さめサイズ）
+                // 色選択（チェックマーク付き）
                 Column {
                     Text(
                         "色を選ぶ",
@@ -433,19 +436,10 @@ fun TrashEditDialog(
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         colorList.take(4).forEach { (hex, _) ->
-                            Box(
-                                modifier = Modifier
-                                    .size(40.dp) // 小さめ
-                                    .clip(CircleShape)
-                                    .background(Color(android.graphics.Color.parseColor(hex)))
-                                    .clickable { selectedColor = hex }
-                                    .then(
-                                        if (selectedColor == hex)
-                                            Modifier.background(
-                                                Color.White.copy(alpha = 0.3f)
-                                            )
-                                        else Modifier
-                                    )
+                            ColorSelector(
+                                color = hex,
+                                isSelected = selectedColor == hex,
+                                onClick = { selectedColor = hex }
                             )
                         }
                     }
@@ -455,19 +449,10 @@ fun TrashEditDialog(
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         colorList.drop(4).forEach { (hex, _) ->
-                            Box(
-                                modifier = Modifier
-                                    .size(40.dp) // 小さめ
-                                    .clip(CircleShape)
-                                    .background(Color(android.graphics.Color.parseColor(hex)))
-                                    .clickable { selectedColor = hex }
-                                    .then(
-                                        if (selectedColor == hex)
-                                            Modifier.background(
-                                                Color.White.copy(alpha = 0.3f)
-                                            )
-                                        else Modifier
-                                    )
+                            ColorSelector(
+                                color = hex,
+                                isSelected = selectedColor == hex,
+                                onClick = { selectedColor = hex }
                             )
                         }
                     }
@@ -500,13 +485,15 @@ fun TrashEditDialog(
                                         selectedColor
                                     )
                                 ),
-                                modifier = Modifier.size(44.dp)
+                                modifier = Modifier.size(48.dp)
                             ) {
                                 Text(
                                     dayName,
-                                    color = if (isSelected) Color.White else Color.Black,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 14.sp
+                                    color = if (isSelected) Color(
+                                        android.graphics.Color.parseColor(selectedColor)
+                                    ) else Color.Black.copy(alpha = 0.6f),
+                                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
+                                    fontSize = 16.sp
                                 )
                             }
                         }
@@ -532,16 +519,20 @@ fun TrashEditDialog(
                                         selectedColor
                                     )
                                 ),
-                                modifier = Modifier.size(44.dp)
+                                modifier = Modifier.size(48.dp)
                             ) {
                                 Text(
                                     dayName,
-                                    color = if (isSelected) Color.White else Color.Black,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 14.sp
+                                    color = if (isSelected) Color(
+                                        android.graphics.Color.parseColor(selectedColor)
+                                    ) else Color.Black.copy(alpha = 0.6f),
+                                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
+                                    fontSize = 16.sp
                                 )
                             }
                         }
+                        // 3つしかないので1つ分スペーサーを追加してバランスを取る
+                        Spacer(modifier = Modifier.size(48.dp))
                     }
                 }
 
