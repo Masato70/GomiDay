@@ -55,7 +55,7 @@ fun TrashHomeScreen(
             TopAppBar(
                 title = {
                     Text(
-                        "ゴミ出しカレンダー",
+                        "ゴミ出しリマインダー",
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp
                     )
